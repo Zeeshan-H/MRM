@@ -23,7 +23,7 @@ namespace SMS_Sender.Controllers
         public IHttpActionResult Post(Msg msg)
         {
 
-            String flag2 = "1", flag = "0";
+            string flag =1;
 
             //string MyUsername = "923228429365"; //Your Username At Sendpk.com 
             //string MyPassword = "4289"; //Your Password At Sendpk.com 
@@ -68,7 +68,7 @@ namespace SMS_Sender.Controllers
                 WebResponse resp = req.GetResponse();
                 var sr = new System.IO.StreamReader(resp.GetResponseStream());
              //   return  Ok(sr.ReadToEnd().Trim());
-                return Ok(flag2.ToString());
+                return Ok(flag);
             }
 
 
@@ -80,13 +80,14 @@ namespace SMS_Sender.Controllers
 
                 if (httpWebResponse != null)
                 {
+                flag = 0;
                     switch (httpWebResponse.StatusCode)
                     {
                         case HttpStatusCode.NotFound:
                             return Ok(httpWebResponse.ToString() + URI.ToString());
                         case HttpStatusCode.BadRequest:
                            
-                            return Ok(flag.ToString());
+                            return Ok(flag);
                         default:
                             return Ok(httpWebResponse.StatusCode.ToString());
 
