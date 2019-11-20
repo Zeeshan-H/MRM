@@ -25,10 +25,10 @@ namespace SMS_Sender.Controllers
 
             string flag =1;
 
-            //string MyUsername = "923228429365"; //Your Username At Sendpk.com 
-            //string MyPassword = "4289"; //Your Password At Sendpk.com 
+            string MyUsername = "923228429365"; //Your Username At Sendpk.com 
+            string MyPassword = "4289"; //Your Password At Sendpk.com 
             //string toNumber = "923248402416"; //Recepient cell phone number with country code 
-            //string Masking = "Zeeshan"; //Your Company Brand Name 
+            string Masking = "Zeeshan"; //Your Company Brand Name 
             //string MessageText = "Hello sir, this is zeeshan, testing.";
 
             messsageEntities entities = new messsageEntities();
@@ -42,9 +42,9 @@ namespace SMS_Sender.Controllers
 
                 String URI = "http://sendpk.com" +
                 "/api/sms.php?" + 
-                "username=" +   msg.username +
-                "&password=" + msg.pass +
-                "&sender=" + msg.sender +
+                "username=" +   MyUsername +
+                "&password=" + MyPassword +
+                "&sender=" + Masking +
                 "&mobile=" + msg.mobile +
                 "&message=" + Uri.UnescapeDataString(msg.msg1); // Visual Studio 10-15 
 
