@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="messsageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Mem_Details">
+    <Key>
+      <PropertyRef Name="MemDtlsId" />
+    </Key>
+    <Property Name="MemDtlsId" Type="int" Nullable="false" />
+    <Property Name="MemId" Type="int" Nullable="false" />
+    <Property Name="FName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="LName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TitleId" Type="smallint" Nullable="false" />
+    <Property Name="UpdateOn" Type="datetime" Nullable="false" />
+    <Property Name="AddedOn" Type="datetime" Nullable="false" />
+    <Property Name="AddedBy" Type="int" Nullable="false" />
+    <Property Name="UpdateBy" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mem_Info">
+    <Key>
+      <PropertyRef Name="MemId" />
+    </Key>
+    <Property Name="MemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemTypeId" Type="smallint" Nullable="false" />
+    <Property Name="MemStatusId" Type="smallint" Nullable="false" />
+    <Property Name="ParentMemId" Type="nchar" MaxLength="10" />
+    <Property Name="AddedOn" Type="datetime" Nullable="false" />
+    <Property Name="AddedBy" Type="int" Nullable="false" />
+    <Property Name="UpdateOn" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mem_Title">
+    <Key>
+      <PropertyRef Name="TitleId" />
+    </Key>
+    <Property Name="TitleId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TitleDesc" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Msg">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="20" />
+    <Property Name="pass" Type="varchar" MaxLength="20" />
+    <Property Name="sender" Type="varchar" MaxLength="20" />
+    <Property Name="mobile" Type="varchar" MaxLength="20" />
+    <Property Name="msg" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK_Mem_Details_Mem_Info">
+    <End Role="Mem_Info" Type="Self.Mem_Info" Multiplicity="1" />
+    <End Role="Mem_Details" Type="Self.Mem_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mem_Info">
+        <PropertyRef Name="MemId" />
+      </Principal>
+      <Dependent Role="Mem_Details">
+        <PropertyRef Name="MemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mem_Details_Mem_Title">
+    <End Role="Mem_Title" Type="Self.Mem_Title" Multiplicity="1" />
+    <End Role="Mem_Details" Type="Self.Mem_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mem_Title">
+        <PropertyRef Name="TitleId" />
+      </Principal>
+      <Dependent Role="Mem_Details">
+        <PropertyRef Name="TitleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="messsageModelStoreContainer">
+    <EntitySet Name="Mem_Details" EntityType="Self.Mem_Details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mem_Info" EntityType="Self.Mem_Info" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mem_Title" EntityType="Self.Mem_Title" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Msg" EntityType="Self.Msg" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Mem_Details_Mem_Info" Association="Self.FK_Mem_Details_Mem_Info">
+      <End Role="Mem_Info" EntitySet="Mem_Info" />
+      <End Role="Mem_Details" EntitySet="Mem_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mem_Details_Mem_Title" Association="Self.FK_Mem_Details_Mem_Title">
+      <End Role="Mem_Title" EntitySet="Mem_Title" />
+      <End Role="Mem_Details" EntitySet="Mem_Details" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

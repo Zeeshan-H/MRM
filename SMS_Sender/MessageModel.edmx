@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="messsageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Mem_Details">
+          <Key>
+            <PropertyRef Name="MemDtlsId" />
+          </Key>
+          <Property Name="MemDtlsId" Type="int" Nullable="false" />
+          <Property Name="MemId" Type="int" Nullable="false" />
+          <Property Name="FName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="MName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TitleId" Type="smallint" Nullable="false" />
+          <Property Name="UpdateOn" Type="datetime" Nullable="false" />
+          <Property Name="AddedOn" Type="datetime" Nullable="false" />
+          <Property Name="AddedBy" Type="int" Nullable="false" />
+          <Property Name="UpdateBy" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mem_Info">
+          <Key>
+            <PropertyRef Name="MemId" />
+          </Key>
+          <Property Name="MemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemTypeId" Type="smallint" Nullable="false" />
+          <Property Name="MemStatusId" Type="smallint" Nullable="false" />
+          <Property Name="ParentMemId" Type="nchar" MaxLength="10" />
+          <Property Name="AddedOn" Type="datetime" Nullable="false" />
+          <Property Name="AddedBy" Type="int" Nullable="false" />
+          <Property Name="UpdateOn" Type="datetime" Nullable="false" />
+          <Property Name="UpdateBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mem_Title">
+          <Key>
+            <PropertyRef Name="TitleId" />
+          </Key>
+          <Property Name="TitleId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TitleDesc" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Msg">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="20" />
+          <Property Name="pass" Type="varchar" MaxLength="20" />
+          <Property Name="sender" Type="varchar" MaxLength="20" />
+          <Property Name="mobile" Type="varchar" MaxLength="20" />
+          <Property Name="msg" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_Mem_Details_Mem_Info">
+          <End Role="Mem_Info" Type="Self.Mem_Info" Multiplicity="1" />
+          <End Role="Mem_Details" Type="Self.Mem_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mem_Info">
+              <PropertyRef Name="MemId" />
+            </Principal>
+            <Dependent Role="Mem_Details">
+              <PropertyRef Name="MemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mem_Details_Mem_Title">
+          <End Role="Mem_Title" Type="Self.Mem_Title" Multiplicity="1" />
+          <End Role="Mem_Details" Type="Self.Mem_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mem_Title">
+              <PropertyRef Name="TitleId" />
+            </Principal>
+            <Dependent Role="Mem_Details">
+              <PropertyRef Name="TitleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="messsageModelStoreContainer">
+          <EntitySet Name="Mem_Details" EntityType="Self.Mem_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mem_Info" EntityType="Self.Mem_Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mem_Title" EntityType="Self.Mem_Title" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Msg" EntityType="Self.Msg" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Mem_Details_Mem_Info" Association="Self.FK_Mem_Details_Mem_Info">
+            <End Role="Mem_Info" EntitySet="Mem_Info" />
+            <End Role="Mem_Details" EntitySet="Mem_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mem_Details_Mem_Title" Association="Self.FK_Mem_Details_Mem_Title">
+            <End Role="Mem_Title" EntitySet="Mem_Title" />
+            <End Role="Mem_Details" EntitySet="Mem_Details" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="messsageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Mem_Details">
+          <Key>
+            <PropertyRef Name="MemDtlsId" />
+          </Key>
+          <Property Name="MemDtlsId" Type="Int32" Nullable="false" />
+          <Property Name="MemId" Type="Int32" Nullable="false" />
+          <Property Name="FName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TitleId" Type="Int16" Nullable="false" />
+          <Property Name="UpdateOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AddedBy" Type="Int32" Nullable="false" />
+          <Property Name="UpdateBy" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Mem_Info" Relationship="Self.FK_Mem_Details_Mem_Info" FromRole="Mem_Details" ToRole="Mem_Info" />
+          <NavigationProperty Name="Mem_Title" Relationship="Self.FK_Mem_Details_Mem_Title" FromRole="Mem_Details" ToRole="Mem_Title" />
+        </EntityType>
+        <EntityType Name="Mem_Info">
+          <Key>
+            <PropertyRef Name="MemId" />
+          </Key>
+          <Property Name="MemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemTypeId" Type="Int16" Nullable="false" />
+          <Property Name="MemStatusId" Type="Int16" Nullable="false" />
+          <Property Name="ParentMemId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AddedBy" Type="Int32" Nullable="false" />
+          <Property Name="UpdateOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateBy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Mem_Details" Relationship="Self.FK_Mem_Details_Mem_Info" FromRole="Mem_Info" ToRole="Mem_Details" />
+        </EntityType>
+        <EntityType Name="Mem_Title">
+          <Key>
+            <PropertyRef Name="TitleId" />
+          </Key>
+          <Property Name="TitleId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TitleDesc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Mem_Details" Relationship="Self.FK_Mem_Details_Mem_Title" FromRole="Mem_Title" ToRole="Mem_Details" />
+        </EntityType>
+        <EntityType Name="Msg">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="pass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="sender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="msg1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Mem_Details_Mem_Info">
+          <End Role="Mem_Info" Type="Self.Mem_Info" Multiplicity="1" />
+          <End Role="Mem_Details" Type="Self.Mem_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mem_Info">
+              <PropertyRef Name="MemId" />
+            </Principal>
+            <Dependent Role="Mem_Details">
+              <PropertyRef Name="MemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mem_Details_Mem_Title">
+          <End Role="Mem_Title" Type="Self.Mem_Title" Multiplicity="1" />
+          <End Role="Mem_Details" Type="Self.Mem_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mem_Title">
+              <PropertyRef Name="TitleId" />
+            </Principal>
+            <Dependent Role="Mem_Details">
+              <PropertyRef Name="TitleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="messsageEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Mem_Details" EntityType="Self.Mem_Details" />
+          <EntitySet Name="Mem_Info" EntityType="Self.Mem_Info" />
+          <EntitySet Name="Mem_Title" EntityType="Self.Mem_Title" />
+          <EntitySet Name="Msgs" EntityType="Self.Msg" />
+          <AssociationSet Name="FK_Mem_Details_Mem_Info" Association="Self.FK_Mem_Details_Mem_Info">
+            <End Role="Mem_Info" EntitySet="Mem_Info" />
+            <End Role="Mem_Details" EntitySet="Mem_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mem_Details_Mem_Title" Association="Self.FK_Mem_Details_Mem_Title">
+            <End Role="Mem_Title" EntitySet="Mem_Title" />
+            <End Role="Mem_Details" EntitySet="Mem_Details" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="messsageModelStoreContainer" CdmEntityContainer="messsageEntities">
+          <EntitySetMapping Name="Mem_Details">
+            <EntityTypeMapping TypeName="messsageModel.Mem_Details">
+              <MappingFragment StoreEntitySet="Mem_Details">
+                <ScalarProperty Name="MemDtlsId" ColumnName="MemDtlsId" />
+                <ScalarProperty Name="MemId" ColumnName="MemId" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="MName" ColumnName="MName" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="TitleId" ColumnName="TitleId" />
+                <ScalarProperty Name="UpdateOn" ColumnName="UpdateOn" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mem_Info">
+            <EntityTypeMapping TypeName="messsageModel.Mem_Info">
+              <MappingFragment StoreEntitySet="Mem_Info">
+                <ScalarProperty Name="MemId" ColumnName="MemId" />
+                <ScalarProperty Name="MemTypeId" ColumnName="MemTypeId" />
+                <ScalarProperty Name="MemStatusId" ColumnName="MemStatusId" />
+                <ScalarProperty Name="ParentMemId" ColumnName="ParentMemId" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="UpdateOn" ColumnName="UpdateOn" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mem_Title">
+            <EntityTypeMapping TypeName="messsageModel.Mem_Title">
+              <MappingFragment StoreEntitySet="Mem_Title">
+                <ScalarProperty Name="TitleId" ColumnName="TitleId" />
+                <ScalarProperty Name="TitleDesc" ColumnName="TitleDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Msgs">
+            <EntityTypeMapping TypeName="messsageModel.Msg">
+              <MappingFragment StoreEntitySet="Msg">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="sender" ColumnName="sender" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="msg1" ColumnName="msg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
