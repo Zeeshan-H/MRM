@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mrmdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Gen_MemberType">
+    <Key>
+      <PropertyRef Name="MemTypeId" />
+    </Key>
+    <Property Name="MemTypeId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemType" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Gen_UserAccs">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemGrpId" Type="int" Nullable="false" />
+    <Property Name="PassKey" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="AddedBy" Type="int" Nullable="false" />
+    <Property Name="AddedOn" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" Nullable="false" />
+    <Property Name="UpdateOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Gen_UserGroup">
+    <Key>
+      <PropertyRef Name="GrpId" />
+    </Key>
+    <Property Name="GrpId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemTypeId" Type="smallint" Nullable="false" />
+    <Property Name="UserGrp" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Gen_UserStatus">
+    <Key>
+      <PropertyRef Name="UserStatusId" />
+    </Key>
+    <Property Name="UserStatusId" Type="smallint" Nullable="false" />
+    <Property Name="UserStatus" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mem_Contacts">
+    <Key>
+      <PropertyRef Name="ContactID" />
+    </Key>
+    <Property Name="ContactID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemId" Type="int" Nullable="false" />
+    <Property Name="PrimaryNo" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="AltContactNo" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="NoType" Type="smallint" Nullable="false" />
+    <Property Name="EmailAdd" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmailAdd2" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mem_Details">
+    <Key>
+      <PropertyRef Name="MemDtlsId" />
+    </Key>
+    <Property Name="MemId" Type="int" Nullable="false" />
+    <Property Name="FName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="LName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TitleId" Type="smallint" Nullable="false" />
+    <Property Name="UpdateOn" Type="datetime" Nullable="false" />
+    <Property Name="AddedOn" Type="datetime" Nullable="false" />
+    <Property Name="AddedBy" Type="int" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" Nullable="false" />
+    <Property Name="MemDtlsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mem_Info">
+    <Key>
+      <PropertyRef Name="MemId" />
+    </Key>
+    <Property Name="MemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemTypeId" Type="smallint" Nullable="false" />
+    <Property Name="MemStatusId" Type="smallint" Nullable="false" />
+    <Property Name="ParentMemId" Type="nchar" MaxLength="10" />
+    <Property Name="AddedOn" Type="datetime" Nullable="false" />
+    <Property Name="AddedBy" Type="int" Nullable="false" />
+    <Property Name="UpdateOn" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mem_MemberToGroup">
+    <Key>
+      <PropertyRef Name="MemGrpId" />
+    </Key>
+    <Property Name="MemGrpId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemId" Type="int" Nullable="false" />
+    <Property Name="GrpId" Type="smallint" Nullable="false" />
+    <Property Name="MFId" Type="int" Nullable="false" />
+    <Property Name="UserStatusId" Type="smallint" Nullable="false" />
+    <Property Name="AddedBy" Type="int" Nullable="false" />
+    <Property Name="AddedOn" Type="datetime" Nullable="false" />
+    <Property Name="UpdateBy" Type="int" Nullable="false" />
+    <Property Name="UpdateOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mem_Status">
+    <Key>
+      <PropertyRef Name="MemStatusId" />
+    </Key>
+    <Property Name="MemStatusId" Type="smallint" Nullable="false" />
+    <Property Name="MemStatus" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mem_Title">
+    <Key>
+      <PropertyRef Name="TitleId" />
+    </Key>
+    <Property Name="TitleId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TitleDesc" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MF_Details">
+    <Key>
+      <PropertyRef Name="MFDtlsId" />
+    </Key>
+    <Property Name="MFDtlsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MFStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MemId" Type="int" Nullable="false" />
+    <Property Name="MFName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MFShortName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MFAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MFWeblink" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MFStatusId" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MF_Status">
+    <Key>
+      <PropertyRef Name="MFStatusId" />
+    </Key>
+    <Property Name="MFStatusId" Type="smallint" Nullable="false" />
+    <Property Name="MEStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Gen_UserAccs_Mem_MemberToGroup">
+    <End Role="Mem_MemberToGroup" Type="Self.Mem_MemberToGroup" Multiplicity="1" />
+    <End Role="Gen_UserAccs" Type="Self.Gen_UserAccs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mem_MemberToGroup">
+        <PropertyRef Name="MemGrpId" />
+      </Principal>
+      <Dependent Role="Gen_UserAccs">
+        <PropertyRef Name="MemGrpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mem_Contacts_Mem_Info">
+    <End Role="Mem_Info" Type="Self.Mem_Info" Multiplicity="1" />
+    <End Role="Mem_Contacts" Type="Self.Mem_Contacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mem_Info">
+        <PropertyRef Name="MemId" />
+      </Principal>
+      <Dependent Role="Mem_Contacts">
+        <PropertyRef Name="MemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mem_Details_Mem_Info">
+    <End Role="Mem_Info" Type="Self.Mem_Info" Multiplicity="1" />
+    <End Role="Mem_Details" Type="Self.Mem_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mem_Info">
+        <PropertyRef Name="MemId" />
+      </Principal>
+      <Dependent Role="Mem_Details">
+        <PropertyRef Name="MemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mem_Details_Mem_Title">
+    <End Role="Mem_Title" Type="Self.Mem_Title" Multiplicity="1" />
+    <End Role="Mem_Details" Type="Self.Mem_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mem_Title">
+        <PropertyRef Name="TitleId" />
+      </Principal>
+      <Dependent Role="Mem_Details">
+        <PropertyRef Name="TitleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mem_Info_Gen_MemberType">
+    <End Role="Gen_MemberType" Type="Self.Gen_MemberType" Multiplicity="1" />
+    <End Role="Mem_Info" Type="Self.Mem_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gen_MemberType">
+        <PropertyRef Name="MemTypeId" />
+      </Principal>
+      <Dependent Role="Mem_Info">
+        <PropertyRef Name="MemTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mem_Info_Mem_Status">
+    <End Role="Mem_Status" Type="Self.Mem_Status" Multiplicity="1" />
+    <End Role="Mem_Info" Type="Self.Mem_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mem_Status">
+        <PropertyRef Name="MemStatusId" />
+      </Principal>
+      <Dependent Role="Mem_Info">
+        <PropertyRef Name="MemStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mem_MemberToGroup_Gen_UserGroup">
+    <End Role="Gen_UserGroup" Type="Self.Gen_UserGroup" Multiplicity="1" />
+    <End Role="Mem_MemberToGroup" Type="Self.Mem_MemberToGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gen_UserGroup">
+        <PropertyRef Name="GrpId" />
+      </Principal>
+      <Dependent Role="Mem_MemberToGroup">
+        <PropertyRef Name="GrpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mem_MemberToGroup_Gen_UserStatus">
+    <End Role="Gen_UserStatus" Type="Self.Gen_UserStatus" Multiplicity="1" />
+    <End Role="Mem_MemberToGroup" Type="Self.Mem_MemberToGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gen_UserStatus">
+        <PropertyRef Name="UserStatusId" />
+      </Principal>
+      <Dependent Role="Mem_MemberToGroup">
+        <PropertyRef Name="UserStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mem_MemberToGroup_Mem_Info">
+    <End Role="Mem_Info" Type="Self.Mem_Info" Multiplicity="1" />
+    <End Role="Mem_MemberToGroup" Type="Self.Mem_MemberToGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mem_Info">
+        <PropertyRef Name="MemId" />
+      </Principal>
+      <Dependent Role="Mem_MemberToGroup">
+        <PropertyRef Name="MemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MF_Details_Mem_Info">
+    <End Role="Mem_Info" Type="Self.Mem_Info" Multiplicity="1" />
+    <End Role="MF_Details" Type="Self.MF_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mem_Info">
+        <PropertyRef Name="MemId" />
+      </Principal>
+      <Dependent Role="MF_Details">
+        <PropertyRef Name="MemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MF_Details_MF_Status">
+    <End Role="MF_Status" Type="Self.MF_Status" Multiplicity="1" />
+    <End Role="MF_Details" Type="Self.MF_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MF_Status">
+        <PropertyRef Name="MFStatusId" />
+      </Principal>
+      <Dependent Role="MF_Details">
+        <PropertyRef Name="MFStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="mrmdbModelStoreContainer">
+    <EntitySet Name="Gen_MemberType" EntityType="Self.Gen_MemberType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gen_UserAccs" EntityType="Self.Gen_UserAccs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gen_UserGroup" EntityType="Self.Gen_UserGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gen_UserStatus" EntityType="Self.Gen_UserStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mem_Contacts" EntityType="Self.Mem_Contacts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mem_Details" EntityType="Self.Mem_Details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mem_Info" EntityType="Self.Mem_Info" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mem_MemberToGroup" EntityType="Self.Mem_MemberToGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mem_Status" EntityType="Self.Mem_Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mem_Title" EntityType="Self.Mem_Title" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MF_Details" EntityType="Self.MF_Details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MF_Status" EntityType="Self.MF_Status" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Gen_UserAccs_Mem_MemberToGroup" Association="Self.FK_Gen_UserAccs_Mem_MemberToGroup">
+      <End Role="Mem_MemberToGroup" EntitySet="Mem_MemberToGroup" />
+      <End Role="Gen_UserAccs" EntitySet="Gen_UserAccs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mem_Contacts_Mem_Info" Association="Self.FK_Mem_Contacts_Mem_Info">
+      <End Role="Mem_Info" EntitySet="Mem_Info" />
+      <End Role="Mem_Contacts" EntitySet="Mem_Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mem_Details_Mem_Info" Association="Self.FK_Mem_Details_Mem_Info">
+      <End Role="Mem_Info" EntitySet="Mem_Info" />
+      <End Role="Mem_Details" EntitySet="Mem_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mem_Details_Mem_Title" Association="Self.FK_Mem_Details_Mem_Title">
+      <End Role="Mem_Title" EntitySet="Mem_Title" />
+      <End Role="Mem_Details" EntitySet="Mem_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mem_Info_Gen_MemberType" Association="Self.FK_Mem_Info_Gen_MemberType">
+      <End Role="Gen_MemberType" EntitySet="Gen_MemberType" />
+      <End Role="Mem_Info" EntitySet="Mem_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mem_Info_Mem_Status" Association="Self.FK_Mem_Info_Mem_Status">
+      <End Role="Mem_Status" EntitySet="Mem_Status" />
+      <End Role="Mem_Info" EntitySet="Mem_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mem_MemberToGroup_Gen_UserGroup" Association="Self.FK_Mem_MemberToGroup_Gen_UserGroup">
+      <End Role="Gen_UserGroup" EntitySet="Gen_UserGroup" />
+      <End Role="Mem_MemberToGroup" EntitySet="Mem_MemberToGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mem_MemberToGroup_Gen_UserStatus" Association="Self.FK_Mem_MemberToGroup_Gen_UserStatus">
+      <End Role="Gen_UserStatus" EntitySet="Gen_UserStatus" />
+      <End Role="Mem_MemberToGroup" EntitySet="Mem_MemberToGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mem_MemberToGroup_Mem_Info" Association="Self.FK_Mem_MemberToGroup_Mem_Info">
+      <End Role="Mem_Info" EntitySet="Mem_Info" />
+      <End Role="Mem_MemberToGroup" EntitySet="Mem_MemberToGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MF_Details_Mem_Info" Association="Self.FK_MF_Details_Mem_Info">
+      <End Role="Mem_Info" EntitySet="Mem_Info" />
+      <End Role="MF_Details" EntitySet="MF_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MF_Details_MF_Status" Association="Self.FK_MF_Details_MF_Status">
+      <End Role="MF_Status" EntitySet="MF_Status" />
+      <End Role="MF_Details" EntitySet="MF_Details" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
